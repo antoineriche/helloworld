@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
-import java.util.Map;
 
 @Slf4j
 @RestController
@@ -46,10 +45,10 @@ public class HelloWorldController {
             produces = MediaType.APPLICATION_JSON_VALUE,
             consumes = MediaType.APPLICATION_JSON_VALUE
     )
-    public MessageEntity createMessage(final Map<String, String> contents) {
-        log.info("[POST] Create message: {}", contents);
+    public MessageEntity createMessage(final MessageRequestDTO request) {
+        log.info("[POST] Create message: {}", request);
         final var entity = MessageEntity.builder()
-                .content(contents.get("content"))
+                .content(request.getContent())
                 .build();
         return messageRepository.save(entity);
     }
