@@ -1,7 +1,7 @@
 # Stage 1: Build
 FROM maven:3.9.6-eclipse-temurin-21 AS build
 WORKDIR /app
-COPY . .
+COPY src/docker .
 RUN mvn clean package -DskipTests
 
 # Stage 2: Run

@@ -16,6 +16,6 @@ spring:
       hibernate.dialect: org.hibernate.dialect.PostgreSQLDialect
   liquibase:
     enabled: true
-    change-log: classpath:resources/db/changelog/changelog-master.xml
+    change-log: "classpath:db/changelog/changelog-master.xml"
   application:
-  name: helloworld
+    name: helloworld
