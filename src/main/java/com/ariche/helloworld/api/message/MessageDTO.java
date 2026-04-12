@@ -1,4 +1,4 @@
-package com.ariche.helloworld.api;
+package com.ariche.helloworld.api.message;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -9,6 +9,7 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class MessageRequestDTO {
+public class MessageDTO {
+    private Long id;
     private String content;
 }
