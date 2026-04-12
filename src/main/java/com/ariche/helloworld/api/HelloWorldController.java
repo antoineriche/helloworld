@@ -37,6 +37,7 @@ public class HelloWorldController {
             produces = MediaType.APPLICATION_JSON_VALUE
     )
     public List<MessageEntity> getMessages() {
+        log.info("[GET] Get all messages");
         return messageRepository.findAll();
     }
 
@@ -46,6 +47,7 @@ public class HelloWorldController {
             consumes = MediaType.APPLICATION_JSON_VALUE
     )
     public MessageEntity createMessage(final Map<String, String> contents) {
+        log.info("[POST] Create message: {}", contents);
         final var entity = MessageEntity.builder()
                 .content(contents.get("content"))
                 .build();
@@ -57,6 +59,7 @@ public class HelloWorldController {
             produces = MediaType.APPLICATION_JSON_VALUE
     )
     public MessageEntity getMessageById(@PathVariable Long id) {
+        log.info("[GET] Get message by id {}", id);
         return messageRepository.findById(id).orElse(null);
     }
 }
