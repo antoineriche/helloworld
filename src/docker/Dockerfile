@@ -1,12 +1,21 @@
-# Stage 1: Build
+# Build Stage
 FROM maven:3.9.6-eclipse-temurin-21 AS build
 WORKDIR /app
-COPY src/docker .
+
+# 1. Copy pom first to cache dependencies
+COPY pom.xml .
+RUN mvn dependency:go-offline
+
+# 2. Copy the actual source code
+COPY src ./src
+
+# 3. Build the jar
 RUN mvn clean package -DskipTests
 
-# Stage 2: Run
-FROM eclipse-temurin:21-jre-alpine
+# Run Stage
+FROM eclipse-temurin:21-jre
 WORKDIR /app
 COPY --from=build /app/target/*.jar app.jar
+
 EXPOSE 8080
 ENTRYPOINT ["java", "-jar", "app.jar"]
