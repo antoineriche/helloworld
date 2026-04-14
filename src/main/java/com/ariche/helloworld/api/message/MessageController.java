@@ -21,7 +21,6 @@ import static com.ariche.helloworld.api.message.MessageDTOMapper.toDTOs;
 @Slf4j
 @RestController
 @RequestMapping("/api/messages")
-@CrossOrigin(origins = "*") // Temporary: allows frontend to talk to it
 @RequiredArgsConstructor
 public class MessageController {
 
